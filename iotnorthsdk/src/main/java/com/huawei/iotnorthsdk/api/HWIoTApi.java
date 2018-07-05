@@ -85,7 +85,7 @@ public interface HWIoTApi {
             @Body                    @NonNull LogoutReq req);
 
     /********************************************
-     * 2.2 设备管理
+     * 2.2 设备管理   na -> c
      **********************************************/
     /**
      * 2.2.1
@@ -263,7 +263,7 @@ public interface HWIoTApi {
             @Query("gatewayId")      @Nullable String gatewayId);
 
     /*************************************************************
-     * 2.4 信令传送
+     * 2.4 信令传送   na->cloud
      **************************************************************/
     /**
      * 2.4.1
@@ -339,7 +339,7 @@ public interface HWIoTApi {
             @Query("endTime")        @Nullable String endTime);
 
     /*********************************************
-     * 2.5  设备服务调用
+     * 2.5  设备服务调用   na -> cloud
      **************************************/
     /**
      * 2.5.1
@@ -357,7 +357,7 @@ public interface HWIoTApi {
             @Body                    @NonNull  CommandDTONA2Cloud req);
 
     /************************************************************
-     * 2.6 批量处理
+     * 2.6 批量处理    na -> cloud
      ****************************************/
     /**
      * 2.6.1
@@ -402,7 +402,7 @@ public interface HWIoTApi {
             @Query("commandId")      @Nullable String commandId);
 
     /***************************************************************
-     * 2.7
+     * 2.7     na -> cloud
      ****************************************************************/
     /**
      * 2.7.1
@@ -473,7 +473,7 @@ public interface HWIoTApi {
             @Body                    @NonNull  RulesStatusUpdateReq req);
 
     /*********************************************************
-     * 2.8消息推送
+     * 2.8消息推送  cloud -> na
      *******************************************************/
     /**
      * 2.8.1
@@ -485,5 +485,11 @@ public interface HWIoTApi {
     Observable<Response<Void>> deviceAddedNotify(
             @Path("CallbackUrl")     @NonNull  String url,
             @Body                    @NonNull  NotifyDeviceAdded req);
+
+
+
+
+
+
 
 }

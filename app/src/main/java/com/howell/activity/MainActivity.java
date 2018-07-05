@@ -17,9 +17,13 @@ import com.howell.server.MyHttpServer;
 import com.howell.utils.Constant;
 import com.howell.utils.Utils;
 
+import org.json.JSONException;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btn,btn2;
     ClientManager mMgr = ClientManager.getInstance();
     private ServiceConnection conn = new ServiceConnection() {
         @Override
@@ -36,37 +40,60 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        btn = findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    mMgr.init(MainActivity.this,true,Constant.SELFCERTPATH,Constant.SELFCERTPWD,Constant.BASE_URL);
-                    mMgr.login(Constant.APPID,Constant.SECRET);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        btn2 = findViewById(R.id.button2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String myIp = Utils.getIpAddressString();
-                Log.i("123","ip="+myIp);
-                mMgr.init(MainActivity.this,false,null,null,"http://"+myIp+":8080");
-                mMgr.testNotify();
-            }
-        });
-
+        ButterKnife.bind(this);
 
 
         Intent intent = new Intent(this, MyHttpServer.class);
         bindService(intent,conn,BIND_AUTO_CREATE);
 
+    }
+
+    @OnClick(R.id.btn_login)
+    void login(){
+        mMgr.init(MainActivity.this,true,Constant.SELFCERTPATH,Constant.SELFCERTPWD,Constant.BASE_URL);
+        mMgr.login(Constant.APPID,Constant.SECRET);
+    }
+    @OnClick(R.id.btn_query)
+    void query(){
+        mMgr.queryDevices(Constant.APPID);
+    }
+
+    @OnClick(R.id.btn_send)
+    void sendTestMsg(){
+        String myIp = Utils.getIpAddressString();
+        mMgr.init(MainActivity.this,false,null,null,"http://"+myIp+":8080");
+        mMgr.testNotify();
+    }
+
+    @OnClick(R.id.btn_scribe)
+    void scribe(){
+        mMgr.subcribeNotify(Constant.APPID);
+    }
+
+    @OnClick(R.id.btn_discovery)
+    void discovery(){
+        try {
+            mMgr.discoveryDevice(Constant.APPID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @OnClick(R.id.btn_test)
+    void test(){
+//        mMgr.queryDeviceStatus(Constant.APPID);
+//        mMgr.queryDevice(Constant.APPID);
+//        mMgr.queryHistory(Constant.APPID);
+//        mMgr.queryCapability(Constant.APPID);
+        mMgr.queryDeviceCmd(Constant.APPID);
+    }
+
+    @OnClick(R.id.btn_next)
+    void nextPage(){
+        startActivity(new Intent(this,ApiActivity.class));
     }
 
 }

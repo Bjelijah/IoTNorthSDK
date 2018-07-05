@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -23,6 +24,7 @@ android {
     }
     buildToolsVersion '27.0.3'
     useLibrary 'org.apache.http.legacy'
+
 }
 
 dependencies {
@@ -36,8 +38,21 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation'com.squareup.retrofit2:retrofit:2.3.0'
     implementation project(path: ':iotnorthsdk')
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 //    api('org.apache.httpcomponents:httpmime:4.3.6') {
 //        exclude module: 'httpclient'
 //    }
 //    api 'org.apache.httpcomponents:httpcore:4.3.3'
+
+//    api('org.apache.httpcomponents:httpmime:4.3.6') {
+//        exclude module: 'httpclient'
+//    }
+    api 'org.apache.httpcomponents:httpclient-android:4.3.5'
+
+
+
+//    api group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
 }
