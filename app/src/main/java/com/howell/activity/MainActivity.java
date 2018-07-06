@@ -48,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        unbindService(conn);
+        super.onDestroy();
+    }
+
     @OnClick(R.id.btn_login)
     void login(){
         mMgr.init(MainActivity.this,true,Constant.SELFCERTPATH,Constant.SELFCERTPWD,Constant.BASE_URL);
