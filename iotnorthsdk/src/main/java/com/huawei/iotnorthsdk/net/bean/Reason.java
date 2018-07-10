@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -8,8 +9,8 @@ public class Reason {
     @SerializedName("satisfactionTime")   String satisfactionTime;
     @SerializedName("type")               String type;
     @SerializedName("id")                 String id;
-    @SerializedName("info")               JSONObject infoJsonObj;
-    @SerializedName("transInfo")          JSONObject transInfoJsonObj;
+    @SerializedName("info")               JsonObject infoJsonObj;
+    @SerializedName("transInfo")          JsonObject transInfoJsonObj;
 
     @Override
     public String toString() {
@@ -46,19 +47,19 @@ public class Reason {
         this.id = id;
     }
 
-    public JSONObject getInfoJsonObj() {
+    public JsonObject getInfoJsonObj() {
         return infoJsonObj;
     }
 
-    public void setInfoJsonObj(JSONObject infoJsonObj) {
+    public void setInfoJsonObj(JsonObject infoJsonObj) {
         this.infoJsonObj = infoJsonObj;
     }
 
-    public JSONObject getTransInfoJsonObj() {
+    public JsonObject getTransInfoJsonObj() {
         return transInfoJsonObj;
     }
 
-    public void setTransInfoJsonObj(JSONObject transInfoJsonObj) {
+    public void setTransInfoJsonObj(JsonObject transInfoJsonObj) {
         this.transInfoJsonObj = transInfoJsonObj;
     }
 
@@ -66,7 +67,7 @@ public class Reason {
 
     }
 
-    public Reason(String satisfactionTime, String type, String id, JSONObject infoJsonObj, JSONObject transInfoJsonObj) {
+    public Reason(String satisfactionTime, String type, String id, JsonObject infoJsonObj, JsonObject transInfoJsonObj) {
 
         this.satisfactionTime = satisfactionTime;
         this.type = type;

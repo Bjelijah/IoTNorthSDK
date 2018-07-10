@@ -1,6 +1,7 @@
 package com.huawei.iotnorthsdk.net.bean;
 
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -8,7 +9,7 @@ import org.json.JSONObject;
 public class NotifyMessageConfirm extends NotifyBase {
 
     @SerializedName("header")         MessageConfirmHeader header;
-    @SerializedName("body")           JSONObject bodyJsonObj;
+    @SerializedName("body")           JsonObject bodyJsonObj;
 
     @Override
     public String toString() {
@@ -35,11 +36,11 @@ public class NotifyMessageConfirm extends NotifyBase {
         this.header = header;
     }
 
-    public JSONObject getBodyJsonObj() {
+    public JsonObject getBodyJsonObj() {
         return bodyJsonObj;
     }
 
-    public void setBodyJsonObj(JSONObject bodyJsonObj) {
+    public void setBodyJsonObj(JsonObject bodyJsonObj) {
         this.bodyJsonObj = bodyJsonObj;
     }
 
@@ -47,7 +48,7 @@ public class NotifyMessageConfirm extends NotifyBase {
 
     }
 
-    public NotifyMessageConfirm(String notifyType, MessageConfirmHeader header, JSONObject bodyJsonObj) {
+    public NotifyMessageConfirm(String notifyType, MessageConfirmHeader header, JsonObject bodyJsonObj) {
 
         this.notifyType = notifyType;
         this.header = header;

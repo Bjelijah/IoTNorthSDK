@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -12,7 +13,7 @@ public class Action_DeviceCMD {
     @SerializedName("cmd")         CMD cmd;
     @SerializedName("cmdVersion")  String cmdVersion;//v1.3.0
     @SerializedName("cmdMetaData") CmdMetaDataV1_3_0 cmdMetaData;
-    @SerializedName("transInfo")   JSONObject transInfo;
+    @SerializedName("transInfo")   JsonObject transInfo;
 
     @Override
     public String toString() {
@@ -76,11 +77,11 @@ public class Action_DeviceCMD {
         this.cmdMetaData = cmdMetaData;
     }
 
-    public JSONObject getTransInfo() {
+    public JsonObject getTransInfo() {
         return transInfo;
     }
 
-    public void setTransInfo(JSONObject transInfo) {
+    public void setTransInfo(JsonObject transInfo) {
         this.transInfo = transInfo;
     }
 
@@ -97,7 +98,7 @@ public class Action_DeviceCMD {
 
     }
 
-    public Action_DeviceCMD(String type, String id, String appKey, String deviceId, CMD cmd, String cmdVersion, CmdMetaDataV1_3_0 cmdMetaData, JSONObject transInfo) {
+    public Action_DeviceCMD(String type, String id, String appKey, String deviceId, CMD cmd, String cmdVersion, CmdMetaDataV1_3_0 cmdMetaData, JsonObject transInfo) {
 
         this.type = type;
         this.id = id;

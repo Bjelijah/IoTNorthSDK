@@ -30,7 +30,7 @@ public class MyHttpServer extends Service {
     public IBinder onBind(Intent intent) {
         Log.i("123","onBind");
         String myIp = Utils.getIpAddressString();
-        HttpServer s = ApiManager.getInstance().initHttpServer(this,null,8080,false,null,null).getHttpServer();
+        HttpServer s = ApiManager.getInstance().initHttpServer(this,null,8743,false,null,null).getHttpServer();
         s.registListener(new HttpServer.HttpServerListener() {
             @Override
             public void onNotifyDeviceAdd(NotifyDeviceAdded msg) {

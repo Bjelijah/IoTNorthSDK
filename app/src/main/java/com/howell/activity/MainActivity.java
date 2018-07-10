@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btn_send)
     void sendTestMsg(){
         String myIp = Utils.getIpAddressString();
-        mMgr.init(MainActivity.this,false,null,null,"http://"+myIp+":8080");
+        mMgr.init(MainActivity.this,false,null,null,"http://"+myIp+":8743");
         mMgr.testNotify();
     }
 
@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
     void test(){
 //        mMgr.queryDeviceStatus(Constant.APPID);
 //        mMgr.queryDevice(Constant.APPID);
-//        mMgr.queryHistory(Constant.APPID);
+        mMgr.queryHistory(Constant.APPID);
 //        mMgr.queryCapability(Constant.APPID);
-        mMgr.queryDeviceCmd(Constant.APPID);
+//        mMgr.queryDeviceCmd(Constant.APPID);
     }
 
     @OnClick(R.id.btn_next)

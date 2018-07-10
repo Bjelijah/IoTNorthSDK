@@ -14,8 +14,10 @@ package com.howell.utils;
 
 public class Constant {
 
-    public static final String BASE_URL = "https://117.78.47.187:8743";
-    public static final String BASE_IP = "117.78.47.187";
+//    public static final String BASE_URL = "https://117.78.47.187:8743";
+    public static final String BASE_URL = "https://180.101.147.89:8743";//电信
+//    public static final String BASE_IP = "117.78.47.187";
+    public static final String BASE_IP = "180.101.147.89";
     public static final String BASE_PORT = "8743";
     
 //    public static final String BASE_URL = "https://180.101.147.89:8743";
@@ -29,8 +31,11 @@ public class Constant {
     public static final String NODE_ID ="493002407599521";
     
     //please replace the appId and secret, when you use the demo.
-    public static final String APPID = "XbjbKt8DqofzEEWRJdXyJn350Roa";
-    public static final String SECRET = "PTbyMQr0w1yDk6OdGybE7YsSWEUa";
+//    public static final String APPID = "XbjbKt8DqofzEEWRJdXyJn350Roa";
+    public static final String APPID = "SFwc4VFJdcE2Hqfjf02rkarRbHUa";
+
+//    public static final String SECRET = "PTbyMQr0w1yDk6OdGybE7YsSWEUa";
+    public static final String SECRET = "LjXAPhK4arjS1MOpiKYatOZfG0Ea";
 //    public static final String APPID = "NVJ2vCL2XhotXhwa9fcwYy5U6zQa";
 //    public static final String SECRET = "bktcqw5YOak20JiidLcYR_RLEhka";
     

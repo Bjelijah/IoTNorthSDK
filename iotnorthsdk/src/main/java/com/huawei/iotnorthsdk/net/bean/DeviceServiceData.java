@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -7,7 +8,7 @@ import org.json.JSONObject;
 public class DeviceServiceData {
     @SerializedName("serviceId")     String serviceId;
     @SerializedName("serviceType")   String serviceType;
-    @SerializedName("data")          JSONObject dataJsonObj;
+    @SerializedName("data")          JsonObject dataJsonObj;
     @SerializedName("eventTime")     String eventTime;
 
     @Override
@@ -36,11 +37,11 @@ public class DeviceServiceData {
         this.serviceType = serviceType;
     }
 
-    public JSONObject getDataJsonObj() {
+    public JsonObject getDataJsonObj() {
         return dataJsonObj;
     }
 
-    public void setDataJsonObj(JSONObject dataJsonObj) {
+    public void setDataJsonObj(JsonObject dataJsonObj) {
         this.dataJsonObj = dataJsonObj;
     }
 
@@ -56,7 +57,7 @@ public class DeviceServiceData {
 
     }
 
-    public DeviceServiceData(String serviceId, String serviceType, JSONObject dataJsonObj, String eventTime) {
+    public DeviceServiceData(String serviceId, String serviceType, JsonObject dataJsonObj, String eventTime) {
 
         this.serviceId = serviceId;
         this.serviceType = serviceType;

@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -7,7 +8,8 @@ import org.json.JSONObject;
 public class NotifyDeviceEvent extends NotifyBase {
 
     @SerializedName("header")     DeviceEventHeader header;
-    @SerializedName("body")       JSONObject bodyJsonObj;
+    @SerializedName("body")
+    JsonObject bodyJsonObj;
 
     @Override
     public String toString() {
@@ -34,11 +36,11 @@ public class NotifyDeviceEvent extends NotifyBase {
         this.header = header;
     }
 
-    public JSONObject getBodyJsonObj() {
+    public JsonObject getBodyJsonObj() {
         return bodyJsonObj;
     }
 
-    public void setBodyJsonObj(JSONObject bodyJsonObj) {
+    public void setBodyJsonObj(JsonObject bodyJsonObj) {
         this.bodyJsonObj = bodyJsonObj;
     }
 
@@ -46,7 +48,7 @@ public class NotifyDeviceEvent extends NotifyBase {
 
     }
 
-    public NotifyDeviceEvent(String notifyType, DeviceEventHeader header, JSONObject bodyJsonObj) {
+    public NotifyDeviceEvent(String notifyType, DeviceEventHeader header, JsonObject bodyJsonObj) {
 
         this.notifyType = notifyType;
         this.header = header;

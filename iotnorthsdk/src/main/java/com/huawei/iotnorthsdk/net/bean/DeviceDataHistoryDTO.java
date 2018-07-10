@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -9,7 +10,7 @@ public class DeviceDataHistoryDTO {
     @SerializedName("deviceId")   String deviceId;
     @SerializedName("gatewayId")  String gatewayId;
     @SerializedName("appId")      String appId;
-    @SerializedName("data")       JSONObject data;
+    @SerializedName("data")       JsonObject data;
     @SerializedName("timestamp")  String timestamp;
 
     @Override
@@ -19,7 +20,7 @@ public class DeviceDataHistoryDTO {
                 ", deviceId='" + deviceId + '\'' +
                 ", gatewayId='" + gatewayId + '\'' +
                 ", appId='" + appId + '\'' +
-                ", data=" + data +
+                ", data=" + data.toString() +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }
@@ -56,11 +57,11 @@ public class DeviceDataHistoryDTO {
         this.appId = appId;
     }
 
-    public JSONObject getData() {
+    public JsonObject getData() {
         return data;
     }
 
-    public void setData(JSONObject data) {
+    public void setData(JsonObject data) {
         this.data = data;
     }
 
@@ -76,7 +77,7 @@ public class DeviceDataHistoryDTO {
 
     }
 
-    public DeviceDataHistoryDTO(String serviceId, String deviceId, String gatewayId, String appId, JSONObject data, String timestamp) {
+    public DeviceDataHistoryDTO(String serviceId, String deviceId, String gatewayId, String appId, JsonObject data, String timestamp) {
 
         this.serviceId = serviceId;
         this.deviceId = deviceId;

@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -10,7 +11,7 @@ public class Condition_DeviceGroupData {
     @SerializedName("deviceGroupInfo") DeviceGroupInfo deviceGroupInfo;
     @SerializedName("operator")        String operator;
     @SerializedName("value")           String value;
-    @SerializedName("transInfo")       JSONObject transInfoJsonObj;
+    @SerializedName("transInfo")       JsonObject transInfoJsonObj;
     @SerializedName("duration")        Integer duration;
     @SerializedName("strategy")        Strategy strategyJsonObj;
 
@@ -68,11 +69,11 @@ public class Condition_DeviceGroupData {
         this.value = value;
     }
 
-    public JSONObject getTransInfoJsonObj() {
+    public JsonObject getTransInfoJsonObj() {
         return transInfoJsonObj;
     }
 
-    public void setTransInfoJsonObj(JSONObject transInfoJsonObj) {
+    public void setTransInfoJsonObj(JsonObject transInfoJsonObj) {
         this.transInfoJsonObj = transInfoJsonObj;
     }
 
@@ -96,7 +97,7 @@ public class Condition_DeviceGroupData {
 
     }
 
-    public Condition_DeviceGroupData(String type, String id, DeviceGroupInfo deviceGroupInfo, String operator, String value, JSONObject transInfoJsonObj, Integer duration, Strategy strategyJsonObj) {
+    public Condition_DeviceGroupData(String type, String id, DeviceGroupInfo deviceGroupInfo, String operator, String value, JsonObject transInfoJsonObj, Integer duration, Strategy strategyJsonObj) {
 
         this.type = type;
         this.id = id;

@@ -222,23 +222,40 @@ public class ClientManager {
 
     //2.3.3 ok
     public void subcribeNotify(String appId){
-        SubscribeReq req = new SubscribeReq(NotifyType.DEVICE_ADDED.toString(),"http://192.168.18.169:8080");
-        ApiManager.getInstance().getHWHttpClient()
-                .subscribe(appId,BEARER_+mAccessToken,req)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Response<Void>>() {
-                    @Override
-                    public void accept(Response<Void> voidResponse) throws Exception {
-                        Log.i("123","voidResponse="+voidResponse+"  code="+voidResponse.code());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e("123", "throwable  error");
-                        throwable.printStackTrace();
-                    }
-                });
+
+        NotifyType[] type = NotifyType.values();
+        Log.i("123","size="+type.length);
+        String [] URI = NotifyUri.CALLBACK_URI;
+        String testUrl = "https://116.228.67.70:8800";
+        String myUrl = "http://116.228.67.70:8743";
+        String localUrl = "https://192.168.24.100:8743";
+        for (int i=0;i<type.length;i++){
+            Log.i("123","type="+type[i]);
+            SubscribeReq req = new SubscribeReq(type[i].toString(),myUrl+"/"+URI[i]);
+            ApiManager.getInstance().getHWHttpClient()
+                    .subscribe(appId,BEARER_+mAccessToken,req)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Response<Void>>() {
+                        @Override
+                        public void accept(Response<Void> voidResponse) throws Exception {
+                            Log.i("123","voidResponse="+voidResponse+"  code="+voidResponse.code());
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            Log.e("123", "throwable  error");
+                            throwable.printStackTrace();
+                        }
+                    });
+        }
+
+
+
+
+
+
+
     }
     //2.3.4 ok
     public void queryHistory(String appId){

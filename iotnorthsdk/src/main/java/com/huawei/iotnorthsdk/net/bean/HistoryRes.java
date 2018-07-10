@@ -8,7 +8,7 @@ public class HistoryRes {
     @SerializedName("totalCount")   Long totalCount;
     @SerializedName("pageNo")       Long pageNo;
     @SerializedName("pageSize")     Long pageSize;
-    @SerializedName("list")         ArrayList<DeviceDataHistoryDTO> historys;
+    @SerializedName("deviceDataHistoryDTOs")         ArrayList<DeviceDataHistoryDTO> historys;
 
     @Override
     public String toString() {

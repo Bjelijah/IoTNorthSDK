@@ -1,12 +1,13 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
 
 public class CMD {
     @SerializedName("messageType")   String messageType;
-    @SerializedName("messageBody")   JSONObject messageBody;
+    @SerializedName("messageBody")   JsonObject messageBody;
     @SerializedName("serviceId")     String serviceId;
 
     @Override
@@ -26,11 +27,11 @@ public class CMD {
         this.messageType = messageType;
     }
 
-    public JSONObject getMessageBody() {
+    public JsonObject getMessageBody() {
         return messageBody;
     }
 
-    public void setMessageBody(JSONObject messageBody) {
+    public void setMessageBody(JsonObject messageBody) {
         this.messageBody = messageBody;
     }
 
@@ -46,7 +47,7 @@ public class CMD {
 
     }
 
-    public CMD(String messageType, JSONObject messageBody, String serviceId) {
+    public CMD(String messageType, JsonObject messageBody, String serviceId) {
 
         this.messageType = messageType;
         this.messageBody = messageBody;

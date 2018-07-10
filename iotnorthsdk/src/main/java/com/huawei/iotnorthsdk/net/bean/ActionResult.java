@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -8,9 +9,9 @@ public class ActionResult {
     @SerializedName("type")      String type;
     @SerializedName("id")        String id;
     @SerializedName("exception") String exception;
-    @SerializedName("result")    JSONObject resultJsonObj;
-    @SerializedName("info")      JSONObject infoJsonObj;
-    @SerializedName("transInfo") JSONObject transInfoJsonObj;
+    @SerializedName("result")    JsonObject resultJsonObj;
+    @SerializedName("info")      JsonObject infoJsonObj;
+    @SerializedName("transInfo") JsonObject transInfoJsonObj;
 
     @Override
     public String toString() {
@@ -48,27 +49,27 @@ public class ActionResult {
         this.exception = exception;
     }
 
-    public JSONObject getResultJsonObj() {
+    public JsonObject getResultJsonObj() {
         return resultJsonObj;
     }
 
-    public void setResultJsonObj(JSONObject resultJsonObj) {
+    public void setResultJsonObj(JsonObject resultJsonObj) {
         this.resultJsonObj = resultJsonObj;
     }
 
-    public JSONObject getInfoJsonObj() {
+    public JsonObject getInfoJsonObj() {
         return infoJsonObj;
     }
 
-    public void setInfoJsonObj(JSONObject infoJsonObj) {
+    public void setInfoJsonObj(JsonObject infoJsonObj) {
         this.infoJsonObj = infoJsonObj;
     }
 
-    public JSONObject getTransInfoJsonObj() {
+    public JsonObject getTransInfoJsonObj() {
         return transInfoJsonObj;
     }
 
-    public void setTransInfoJsonObj(JSONObject transInfoJsonObj) {
+    public void setTransInfoJsonObj(JsonObject transInfoJsonObj) {
         this.transInfoJsonObj = transInfoJsonObj;
     }
 
@@ -76,7 +77,7 @@ public class ActionResult {
 
     }
 
-    public ActionResult(String type, String id, String exception, JSONObject resultJsonObj, JSONObject infoJsonObj, JSONObject transInfoJsonObj) {
+    public ActionResult(String type, String id, String exception, JsonObject resultJsonObj, JsonObject infoJsonObj, JsonObject transInfoJsonObj) {
 
         this.type = type;
         this.id = id;

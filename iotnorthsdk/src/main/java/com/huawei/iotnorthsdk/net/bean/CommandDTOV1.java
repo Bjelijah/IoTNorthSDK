@@ -1,5 +1,6 @@
 package com.huawei.iotnorthsdk.net.bean;
 
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -7,7 +8,7 @@ import org.json.JSONObject;
 public class CommandDTOV1 {
     @SerializedName("serviceId") String serviceId;
     @SerializedName("method")    String method;
-    @SerializedName("paras")     JSONObject parasJsonObj;
+    @SerializedName("paras")     JsonObject parasJsonObj;
 
     @Override
     public String toString() {
@@ -34,11 +35,11 @@ public class CommandDTOV1 {
         this.method = method;
     }
 
-    public JSONObject getParasJsonObj() {
+    public JsonObject getParasJsonObj() {
         return parasJsonObj;
     }
 
-    public void setParasJsonObj(JSONObject parasJsonObj) {
+    public void setParasJsonObj(JsonObject parasJsonObj) {
         this.parasJsonObj = parasJsonObj;
     }
 
@@ -46,7 +47,7 @@ public class CommandDTOV1 {
 
     }
 
-    public CommandDTOV1(String serviceId, String method, JSONObject parasJsonObj) {
+    public CommandDTOV1(String serviceId, String method, JsonObject parasJsonObj) {
 
         this.serviceId = serviceId;
         this.method = method;
