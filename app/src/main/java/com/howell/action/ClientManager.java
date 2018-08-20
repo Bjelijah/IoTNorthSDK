@@ -1,12 +1,19 @@
 package com.howell.action;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.howell.bean.HistoryData;
 import com.huawei.iotnorthsdk.api.ApiManager;
 import com.huawei.iotnorthsdk.net.bean.AuthRes;
 import com.huawei.iotnorthsdk.net.bean.CommandDTONA2Cloud;
 import com.huawei.iotnorthsdk.net.bean.CommandNA2CloudHeader;
+import com.huawei.iotnorthsdk.net.bean.DeviceDataHistoryDTO;
 import com.huawei.iotnorthsdk.net.bean.DeviceInfo;
 import com.huawei.iotnorthsdk.net.bean.GetDeviceRspDTO;
 import com.huawei.iotnorthsdk.net.bean.HistoryRes;
@@ -27,13 +34,21 @@ import com.huawei.iotnorthsdk.net.bean.SubscribeReq;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+import java.util.Observable;
+
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * 根据iotnorthsdk 自行封装的协议 测试
+ */
 public class ClientManager {
     private static ClientManager mInstance = null;
     private ClientManager(){}
@@ -276,6 +291,84 @@ public class ClientManager {
                     }
                 });
     }
+
+    public void queryPicHistory(String appId, final ImageView v){
+        ApiManager.getInstance().getHWHttpClient()
+                .queryHistory(appId,BEARER_+mAccessToken,null,
+                        mDeviceId,mGatewayId,null,null,0,500,null,null)
+                .map(new Function<HistoryRes, List<DeviceDataHistoryDTO>>() {
+                    @Override
+                    public List<DeviceDataHistoryDTO> apply(HistoryRes historyRes) throws Exception {
+                        return historyRes.getHistorys();
+                    }
+                })
+                .concatMap(new Function<List<DeviceDataHistoryDTO>, ObservableSource<DeviceDataHistoryDTO>>() {
+                    @Override
+                    public ObservableSource<DeviceDataHistoryDTO> apply(List<DeviceDataHistoryDTO> deviceDataHistoryDTOS) throws Exception {
+                        return io.reactivex.Observable.fromIterable(deviceDataHistoryDTOS);
+                   }
+                })
+                .map(new Function<DeviceDataHistoryDTO, String>() {
+
+                    @Override
+                    public String apply(DeviceDataHistoryDTO deviceDataHistoryDTO) throws Exception {
+                        Log.i("123","deviceDataHistoryDTO="+deviceDataHistoryDTO);
+
+                        Gson gson = new Gson();
+
+                        HistoryData data = gson.fromJson(deviceDataHistoryDTO.getData(),HistoryData.class);
+                        Log.i("123","data = "+data);
+
+
+                        if (data.getPicSeq()==5){
+                            String dataBase = data.getPicData();
+
+                            String after = dataBase.replace("==","");
+                            Log.e("123","dataBase="+dataBase);
+                            return after;
+                        }else{
+                            return "";
+                        }
+
+                    }
+                })
+                .toList()
+                .map(new Function<List<String>, String>() {
+                    @Override
+                    public String apply(List<String> strings) throws Exception {
+                        StringBuffer str = new StringBuffer();
+//                        str.append(strings.get(0));
+                        for (String s:strings){
+                            str.append(s);
+                        }
+
+                        return str.toString();
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.e("123","len="+s.length()+"   s="+s);
+
+                        byte [] b = Base64.decode(s,Base64.DEFAULT);
+                        Log.i("123","b size="+b.length);
+                        BitmapFactory.Options op = new BitmapFactory.Options();
+                        op.inSampleSize = 2;
+                        Bitmap bit = BitmapFactory.decodeByteArray(b,0,b.length,op);
+
+
+                        v.setImageBitmap(bit);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
+    }
+
 
     //2.3.5 ok
     public void queryCapability(String appId){

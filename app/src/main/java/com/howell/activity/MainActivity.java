@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.howell.action.ClientManager;
 import com.howell.litenademo.R;
@@ -22,9 +23,13 @@ import org.json.JSONException;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 使用iotnorthsdk model中自行封装
+ */
 public class MainActivity extends AppCompatActivity {
 
     ClientManager mMgr = ClientManager.getInstance();
+    ImageView iv;
     private ServiceConnection conn = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
+        iv = findViewById(R.id.imageView);
         Intent intent = new Intent(this, MyHttpServer.class);
         bindService(intent,conn,BIND_AUTO_CREATE);
 
@@ -85,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @OnClick(R.id.btn_pic)
+    void getPic(){
+        mMgr.queryPicHistory(Constant.APPID,iv);
     }
 
 

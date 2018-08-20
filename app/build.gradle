@@ -67,4 +67,5 @@ dependencies {
 //    implementation ('org.apache.httpcomponents:httpcore:4.4.9')//ok
 
 //    api group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 }

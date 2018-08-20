@@ -44,6 +44,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 /**
+ * 根据官方提供 api-client-1.0.0.jar库 测试
+ * 已知bug 查询历史返回数据为空
  * {@link <华为北向API SDK说明文档>}
  */
 public class ClientApiAction {
